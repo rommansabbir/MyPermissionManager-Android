@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">CallManager</string>
+    <string name="permissionTitle">Permission Required</string>
+    <string name="permissionMessage">: Please grant all required permission requested by this app, else app going to
+        misbehave with you!
+    </string>
+</resources>
