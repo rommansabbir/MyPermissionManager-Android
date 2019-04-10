@@ -1,8 +1,8 @@
-package com.rommansabbir.callmanager
+package com.rommansabbir.mypermissionmanager
 
 import java.lang.Exception
 
-interface MyPermissionManagerInterface {
+interface MyPermissionManagerCallback {
     fun onMPMPermissionGranted()
     fun onMPMPermissionDenied()
     fun onMPMPermissionDeniedPermanently()
