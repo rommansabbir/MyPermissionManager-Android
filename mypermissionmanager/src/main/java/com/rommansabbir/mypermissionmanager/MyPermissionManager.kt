@@ -48,7 +48,7 @@ object MyPermissionManager{
             /**
              * Permission already granted, go ahead
              */
-            myPermissionManagerCallback.onMPMPermissionGranted()
+            myPermissionManagerCallback.onMPMPermissionGranted(permission)
         }
     }
 
@@ -62,7 +62,7 @@ object MyPermissionManager{
             requestSinglePermission(context)
         }
         dialog.setNegativeButton("No") {
-                _, which -> myPermissionManagerCallback.onMPMPermissionDenied()
+                _, which -> myPermissionManagerCallback.onMPMPermissionDenied(requiredPermission!!)
         }
         val alert : AlertDialog = dialog.create()
         alert.setTitle(context.getString(R.string.permissionTitle))
@@ -102,21 +102,21 @@ object MyPermissionManager{
         when (requestCode) {
             permissionRequestCode -> {
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED && permissions[0]== requiredPermission)) {
-                    myPermissionManagerCallback.onMPMPermissionGranted()
+                    myPermissionManagerCallback.onMPMPermissionGranted(requiredPermission!!)
                 }
                 if(countPermissionDenied>=5){
-                    myPermissionManagerCallback.onMPMPermissionDeniedPermanently()
+                    myPermissionManagerCallback.onMPMPermissionDeniedPermanently(requiredPermission!!)
                     countPermissionDenied = 0
                 }
                 else {
-                    myPermissionManagerCallback.onMPMPermissionDenied()
+                    myPermissionManagerCallback.onMPMPermissionDenied(requiredPermission!!)
                     if(countPermissionDenied<5){
                         countPermissionDenied++
                     }
                 }
             }
             else -> {
-                myPermissionManagerCallback.onMPMPermissionDeniedPermanently()
+                myPermissionManagerCallback.onMPMPermissionDeniedPermanently(requiredPermission!!)
             }
         }
     }
